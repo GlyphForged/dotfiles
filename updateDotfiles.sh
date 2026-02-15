@@ -9,7 +9,7 @@ HOME_FILES=(
 
 CONFIG_DIRS=(
   "nvim"
-  # "hypr"
+  "hypr"
   # "waybar"
   # "wezterm"
 )
