@@ -49,3 +49,6 @@
   squash = "!f() { git reset HEAD~$1 && git commit; }; f"
   # Remove branches already merged into main
   cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master' | xargs -r git branch -d"
+
+[url "git@github.com:"]
+    insteadOf = https://github.com/
