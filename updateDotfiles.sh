@@ -8,9 +8,9 @@ HOME_FILES=(
 
 CONFIG_DIRS=(
   "nvim"
-  "hypr"
-  "waybar"
-  "wezterm"
+  # "hypr"
+  # "waybar"
+  # "wezterm"
 )
 
 mkdir -p "$HOME/.config"
@@ -29,7 +29,7 @@ done
 for dir in "${CONFIG_DIRS[@]}"; do
   if [[ -d "$dir" ]]; then
     echo "Syncing $dir -> $HOME/.config/"
-    rsync -a --delete "$dir/" "$HOME/.config/$dir/"
+    rsync -a "$dir/" "$HOME/.config/$dir/"
   fi
 done
 
