@@ -49,6 +49,8 @@
   squash = "!f() { git reset HEAD~$1 && git commit; }; f"
   # Remove branches already merged into main
   cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master' | xargs -r git branch -d"
+  # List aliases
+  aliases = "!git config --get-regexp '^alias\\.' | sed 's/^alias\\.//' | column -t"
 
 [url "git@github.com:"]
     insteadOf = https://github.com/
