@@ -4,6 +4,7 @@ set -euo pipefail
 HOME_FILES=(
   ".bashrc"
   ".gitconfig"
+  ".gitignore_global"
 )
 
 CONFIG_DIRS=(

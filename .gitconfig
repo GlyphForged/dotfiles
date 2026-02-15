@@ -15,6 +15,8 @@
   editor = nvim
   autocrlf = input
   pager = less -FRX
+  whitespace = trailing-space,space-before-tab
+  excludesfile = ~/.gitignore_global
 
 [color]
   ui = auto
@@ -22,11 +24,14 @@
 [diff]
   colorMoved = default
 
+[diff "c"]
+  xfuncname = "^[A-Za-z_].*\\(" # Improve diff readability around C functions
+
 [merge]
-  conflictstyle = zdiff3    # show base version during conflicts
+  conflictstyle = zdiff3        # show base version during conflicts
 
 [rerere]
-  enabled = true            # Remember conflict resolutions
+  enabled = true                # Remember conflict resolutions
 
 [alias]
   st = status
@@ -34,7 +39,7 @@
   sw = switch
   br = branch
   ci = commit
-  ds = diff --staged        # Show staged diff
+  ds = diff --staged            # Show staged diff
   df = diff
   dff = diff --name-only
   rb = rebase
