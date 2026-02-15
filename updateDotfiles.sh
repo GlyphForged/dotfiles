@@ -10,8 +10,6 @@ HOME_FILES=(
 CONFIG_DIRS=(
   "nvim"
   "hypr"
-  # "waybar"
-  # "wezterm"
 )
 
 mkdir -p "$HOME/.config"
@@ -29,7 +27,7 @@ done
 # --- Copy .config dirs ---
 for dir in "${CONFIG_DIRS[@]}"; do
   if [[ -d "$dir" ]]; then
-    echo "Syncing $dir -> $HOME/.config/"
+    echo "Syncing $dir -> $HOME/.config/$dir/"
     rsync -a "$dir/" "$HOME/.config/$dir/"
   fi
 done
