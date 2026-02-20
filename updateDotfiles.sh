@@ -5,6 +5,7 @@ HOME_FILES=(
   ".bashrc"
   ".gitconfig"
   ".gitignore_global"
+  ".tmux.conf"
 )
 
 CONFIG_DIRS=(
