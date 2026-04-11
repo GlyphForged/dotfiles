@@ -1,0 +1,88 @@
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$fill\
+$golang\
+$nodejs\
+$rust\
+$python\
+$cmd_duration\
+$line_break\
+$character
+"""
+
+palette = "mechanicus"
+
+[palettes.mechanicus]
+ink = "#0B1020"
+night = "#131A33"
+panel = "#1E2747"
+violet = "#A855F7"
+magenta = "#FF4FD8"
+cyan = "#5EE7FF"
+blue = "#60A5FA"
+pink = "#FF9CEB"
+pearl = "#F4EEFF"
+warning = "#FF6B9A"
+
+[fill]
+symbol = " "
+
+[username]
+show_always = true
+style_user = "fg:ink bg:magenta bold"
+style_root = "fg:ink bg:warning bold"
+format = "[ $user ]($style)"
+
+[hostname]
+ssh_only = false
+style = "fg:ink bg:cyan bold"
+format = "[ node: $hostname ]($style)"
+
+[directory]
+style = "fg:pearl bg:panel bold"
+format = "[ $path ]($style)"
+truncation_length = 4
+truncate_to_repo = false
+
+[git_branch]
+symbol = "git:"
+style = "fg:ink bg:blue bold"
+format = "[ $symbol$branch ]($style)"
+
+[git_status]
+style = "fg:pearl bg:violet bold"
+format = "([ $all_status$ahead_behind ]($style))"
+
+[golang]
+symbol = "go "
+style = "fg:cyan bg:night"
+format = "[ $symbol$version ]($style)"
+
+[nodejs]
+symbol = "node "
+style = "fg:cyan bg:night"
+format = "[ $symbol$version ]($style)"
+
+[rust]
+symbol = "rust "
+style = "fg:cyan bg:night"
+format = "[ $symbol$version ]($style)"
+
+[python]
+symbol = "py "
+style = "fg:cyan bg:night"
+format = "[ $symbol$version ]($style)"
+
+[cmd_duration]
+min_time = 500
+style = "fg:ink bg:pink bold"
+format = "[ took $duration ]($style)"
+
+[character]
+success_symbol = "[[サムライ](fg:magenta) >>](fg:cyan bold)"
+error_symbol = "[[void](fg:warning bold) >>](fg:pink bold)"
+vimcmd_symbol = "[[sync](fg:blue) <<](fg:cyan bold)"

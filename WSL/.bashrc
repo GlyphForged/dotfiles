@@ -14,6 +14,11 @@ alias p='python'
 alias r='rust'
 alias src='source "$HOME/.bashrc"'
 
+# Use the 1Password SSH agent when it is available.
+if [[ -S "$HOME/.1password/agent.sock" ]]; then
+  export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+fi
+
 # Jump to your main development folder if it exists.
 if [[ -d "$HOME/code" ]]; then
   alias code='cd "$HOME/code"'
@@ -39,4 +44,9 @@ if command -v wslpath >/dev/null 2>&1; then
       echo "Copied Windows path for the current directory."
     }
   fi
+fi
+
+# Load the curated shell prompt when Starship is installed.
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init bash)"
 fi

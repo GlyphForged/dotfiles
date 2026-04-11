@@ -10,6 +10,10 @@ HOME_FILES=(
   ".tmux.conf"
 )
 
+CONFIG_FILES=(
+  "starship.toml"
+)
+
 CONFIG_DIRS=(
   "nvim"
 )
@@ -42,6 +46,27 @@ else
   packages_to_install="$packages_to_install neovim"
 fi
 
+if command -v less >/dev/null 2>&1; then
+  echo "Found less."
+else
+  echo "less is not installed."
+  packages_to_install="$packages_to_install less"
+fi
+
+if command -v yay >/dev/null 2>&1; then
+  echo "Found yay."
+else
+  echo "yay is not installed."
+  packages_to_install="$packages_to_install yay"
+fi
+
+if command -v starship >/dev/null 2>&1; then
+  echo "Found starship."
+else
+  echo "starship is not installed."
+  packages_to_install="$packages_to_install starship"
+fi
+
 # Install anything that was missing.
 if [[ -n "$packages_to_install" ]]; then
   echo "Installing missing packages:$packages_to_install"
@@ -51,11 +76,44 @@ else
   echo "All required packages are already installed."
 fi
 
+if command -v yay >/dev/null 2>&1; then
+  echo "yay is ready."
+else
+  echo "yay is still missing, so 1Password cannot be installed."
+  exit 1
+fi
+
+if command -v op >/dev/null 2>&1; then
+  echo "Found op."
+else
+  echo "op is not installed."
+  echo "Installing 1Password from the AUR with yay."
+  yay -S --needed 1password
+fi
+
+if [[ -x "/opt/1Password/op-ssh-sign" ]]; then
+  echo "Found op-ssh-sign."
+else
+  echo "op-ssh-sign is not installed."
+  echo "Installing 1Password from the AUR with yay."
+  yay -S --needed 1password
+fi
+
 # Copy files from this folder into your home directory one at a time.
 for file in "${HOME_FILES[@]}"; do
   if [[ -e "$file" ]]; then
     echo "Syncing $file -> $HOME/$file"
     rsync -a "$file" "$HOME/$file"
+  else
+    echo "Skipping $file because it does not exist in this folder."
+  fi
+done
+
+# Copy config files into ~/.config one at a time.
+for file in "${CONFIG_FILES[@]}"; do
+  if [[ -e "$file" ]]; then
+    echo "Syncing $file -> $HOME/.config/$file"
+    rsync -a "$file" "$HOME/.config/$file"
   else
     echo "Skipping $file because it does not exist in this folder."
   fi
