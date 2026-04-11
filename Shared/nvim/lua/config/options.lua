@@ -1,19 +1,22 @@
 --------------------------------
 -- Glyphforged LazyVim Config --
 --------------------------------
--- Default docs:
--- Options are automatically loaded before lazy.nvim startup
--- Default options that are always set:
--- https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 
 local opt = vim.opt
 
-opt.shiftwidth = 2 -- Size of an indent
-opt.tabstop = 2 -- Tab width
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.termguicolors = true
+opt.cursorline = true
+opt.scrolloff = 6
+opt.sidescrolloff = 8
+opt.splitbelow = true
+opt.splitright = true
+opt.wrap = false
+opt.colorcolumn = "100"
 
-----------------------
--- Markdown Options --
-----------------------
+vim.g.autoformat = true
+
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
   callback = function()

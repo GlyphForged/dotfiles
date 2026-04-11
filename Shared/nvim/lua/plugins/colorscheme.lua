@@ -1,0 +1,76 @@
+local palette = require("glyphforged.palette")
+
+return {
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      options = {
+        transparent = false,
+        terminal_colors = true,
+        styles = {
+          comments = "italic",
+          keywords = "bold",
+          types = "bold",
+        },
+      },
+      palettes = {
+        nightfox = {
+          bg1 = palette.night,
+          bg2 = palette.panel,
+          bg3 = palette.panel,
+          sel0 = palette.panel,
+          sel1 = palette.violet,
+          comment = palette.pink,
+          black = palette.ink,
+          red = palette.warning,
+          green = palette.cyan,
+          yellow = palette.blue,
+          blue = palette.blue,
+          magenta = palette.magenta,
+          cyan = palette.cyan,
+          white = palette.pearl,
+          orange = palette.warning,
+          pink = palette.pink,
+        },
+      },
+      groups = {
+        nightfox = {
+          Normal = { fg = palette.pearl, bg = palette.night },
+          NormalFloat = { fg = palette.pearl, bg = palette.panel },
+          FloatBorder = { fg = palette.cyan, bg = palette.panel },
+          CursorLine = { bg = palette.panel },
+          Visual = { bg = palette.violet, fg = palette.ink },
+          Search = { fg = palette.ink, bg = palette.cyan },
+          IncSearch = { fg = palette.ink, bg = palette.magenta },
+          MatchParen = { fg = palette.ink, bg = palette.blue, style = "bold" },
+          LineNr = { fg = palette.blue },
+          CursorLineNr = { fg = palette.cyan, style = "bold" },
+          WinSeparator = { fg = palette.violet, bg = palette.night },
+          StatusLine = { fg = palette.pearl, bg = palette.panel },
+          StatusLineNC = { fg = palette.blue, bg = palette.panel },
+          Pmenu = { fg = palette.pearl, bg = palette.panel },
+          PmenuSel = { fg = palette.ink, bg = palette.cyan, style = "bold" },
+          DiagnosticError = { fg = palette.warning },
+          DiagnosticWarn = { fg = palette.pink },
+          DiagnosticInfo = { fg = palette.blue },
+          DiagnosticHint = { fg = palette.cyan },
+          GitSignsAdd = { fg = palette.cyan },
+          GitSignsChange = { fg = palette.blue },
+          GitSignsDelete = { fg = palette.warning },
+          TelescopeBorder = { fg = palette.cyan, bg = palette.panel },
+          TelescopePromptBorder = { fg = palette.magenta, bg = palette.panel },
+          TelescopeResultsBorder = { fg = palette.blue, bg = palette.panel },
+          TelescopePreviewBorder = { fg = palette.violet, bg = palette.panel },
+        },
+      },
+    },
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "nightfox",
+    },
+  },
+}

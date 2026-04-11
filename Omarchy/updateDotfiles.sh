@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+SHARED_DIR="$REPO_ROOT/Shared"
+HOME_CONFIG_DIR="$HOME/.config"
+
 HOME_FILES=(
   ".bashrc"
   ".gitconfig"
@@ -8,66 +13,107 @@ HOME_FILES=(
   ".tmux.conf"
 )
 
-CONFIG_DIRS=(
-  "nvim"
-  "hypr"
+PACMAN_PACKAGES=(
+  "base-devel"
+  "clang"
+  "clang-tools-extra"
+  "cmake"
+  "curl"
+  "dotnet-sdk"
+  "fd"
+  "gcc"
+  "git"
+  "go"
+  "less"
+  "make"
+  "neovim"
+  "nodejs"
+  "npm"
+  "python"
+  "python-pip"
+  "python-virtualenv"
+  "ripgrep"
+  "rsync"
+  "rustup"
+  "starship"
+  "tmux"
+  "unzip"
+  "wget"
 )
 
-mkdir -p "$HOME/.config"
+copy_home_file() {
+  local file_name="$1"
+  local source_path="$SCRIPT_DIR/$file_name"
+  local destination_path="$HOME/$file_name"
 
-echo "Updating Dotfiles..."
-
-# Keep a plain list of package names we still need to install.
-packages_to_install=""
-
-if command -v rsync >/dev/null 2>&1; then
-  echo "Found rsync."
-else
-  echo "rsync is not installed."
-  packages_to_install="$packages_to_install rsync"
-fi
-
-if command -v tmux >/dev/null 2>&1; then
-  echo "Found tmux."
-else
-  echo "tmux is not installed."
-  packages_to_install="$packages_to_install tmux"
-fi
-
-if command -v nvim >/dev/null 2>&1; then
-  echo "Found nvim."
-else
-  echo "nvim is not installed."
-  packages_to_install="$packages_to_install neovim"
-fi
-
-# Install anything that was missing.
-if [[ -n "$packages_to_install" ]]; then
-  echo "Installing missing packages:$packages_to_install"
-  # shellcheck disable=SC2086
-  sudo pacman -S --needed $packages_to_install
-else
-  echo "All required packages are already installed."
-fi
-
-# Copy files from this folder into your home directory one at a time.
-for file in "${HOME_FILES[@]}"; do
-  if [[ -e "$file" ]]; then
-    echo "Syncing $file -> $HOME/$file"
-    rsync -a "$file" "$HOME/$file"
+  if [[ -e "$source_path" ]]; then
+    echo "Syncing $source_path -> $destination_path"
+    rsync -a "$source_path" "$destination_path"
   else
-    echo "Skipping $file because it does not exist in this folder."
+    echo "Skipping $source_path because it does not exist."
   fi
+}
+
+copy_config_file() {
+  local source_path="$1"
+  local destination_name="$2"
+  local destination_path="$HOME_CONFIG_DIR/$destination_name"
+
+  if [[ -f "$source_path" ]]; then
+    echo "Syncing $source_path -> $destination_path"
+    rsync -a "$source_path" "$destination_path"
+  else
+    echo "Skipping $source_path because it does not exist."
+  fi
+}
+
+copy_config_dir() {
+  local source_path="$1"
+  local destination_name="$2"
+  local destination_path="$HOME_CONFIG_DIR/$destination_name"
+
+  if [[ -d "$source_path" ]]; then
+    echo "Syncing $source_path/ -> $destination_path/"
+    mkdir -p "$destination_path"
+    rsync -a "$source_path/" "$destination_path/"
+  else
+    echo "Skipping $source_path because it does not exist."
+  fi
+}
+
+install_missing_pacman_packages() {
+  local packages_to_install=()
+  local package_name=""
+
+  for package_name in "${PACMAN_PACKAGES[@]}"; do
+    if pacman -Qi "$package_name" >/dev/null 2>&1; then
+      echo "Found package: $package_name"
+    else
+      echo "Missing package: $package_name"
+      packages_to_install+=("$package_name")
+    fi
+  done
+
+  if [[ "${#packages_to_install[@]}" -gt 0 ]]; then
+    echo "Installing missing packages with pacman..."
+    sudo pacman -S --needed "${packages_to_install[@]}"
+  else
+    echo "All required pacman packages are already installed."
+  fi
+}
+
+echo "Updating Omarchy dotfiles..."
+mkdir -p "$HOME_CONFIG_DIR"
+
+install_missing_pacman_packages
+
+for file_name in "${HOME_FILES[@]}"; do
+  copy_home_file "$file_name"
 done
 
-# Copy config folders into ~/.config one at a time.
-for dir in "${CONFIG_DIRS[@]}"; do
-  if [[ -d "$dir" ]]; then
-    echo "Syncing $dir -> $HOME/.config/$dir/"
-    rsync -a "$dir/" "$HOME/.config/$dir/"
-  else
-    echo "Skipping $dir because it does not exist in this folder."
-  fi
-done
+copy_config_file "$SHARED_DIR/starship.toml" "starship.toml"
+copy_config_dir "$SHARED_DIR/nvim" "nvim"
+copy_config_dir "$SCRIPT_DIR/nvim" "nvim"
+copy_config_dir "$SCRIPT_DIR/hypr" "hypr"
 
 echo "Done."
