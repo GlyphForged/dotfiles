@@ -1,6 +1,16 @@
 [user]
   name = Aaron C
   email = aaron@glyphforged.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICB6Ip052wYZ2jflWH3ZGnj9O5X2x2iOy3DpE2b+7f+1
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/opt/1Password/op-ssh-sign"
+
+[commit]
+  gpgsign = true
 
 [init]
   defaultBranch = trunk
@@ -32,6 +42,9 @@
 
 [rerere]
   enabled = true                # Remember conflict resolutions
+
+[include]
+  path = ~/.gitconfig.local
 
 [alias]
   st = status

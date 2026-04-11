@@ -2,9 +2,11 @@
 set -euo pipefail
 
 HOME_FILES=(
+  ".bash_profile"
   ".bashrc"
   ".gitconfig"
   ".gitignore_global"
+  ".inputrc"
   ".tmux.conf"
 )
 

@@ -1,18 +1,42 @@
-# If not running interactively, don't do anything (leave this at the top of this file)
-if [[ $- != *i* ]]; then
-  return
+# If this is not an interactive shell, stop here.
+case "$-" in
+*i*) ;;
+*) return ;;
+esac
+
+# Load personal machine-specific shell settings if they exist.
+if [[ -f "$HOME/.bashrc.local" ]]; then
+  source "$HOME/.bashrc.local"
 fi
 
-# Aliases
+# Basic aliases.
 alias p='python'
 alias r='rust'
-alias code="cd ~/Development"
-
-# PendejOS helper commands.
-alias makepos='cd "$HOME/PendejOS" && sudo rm -rf work/* && sudo mkarchiso -v -w "$PWD/work" -o "$PWD/out" "$PWD/profile/archiso"'
-alias mkpos=makepos
-
-alias bootpos='cd "$HOME/PendejOS" && VARS="$PWD/work/OVMF_VARS.fd" && if [ ! -f "$VARS" ]; then cp /usr/share/edk2/x64/OVMF_VARS.4m.fd "$VARS"; fi && qemu-system-x86_64 -enable-kvm -m 4096 -smp 4 -cpu host -machine q35 -device virtio-gpu-pci -device virtio-keyboard-pci -device virtio-mouse-pci -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2/x64/OVMF_CODE.4m.fd -drive if=pflash,format=raw,file="$VARS" -cdrom out/pendejos-0.0.1-x86_64.iso'
-
-# Reload source
 alias src='source "$HOME/.bashrc"'
+
+# Jump to your main development folder if it exists.
+if [[ -d "$HOME/code" ]]; then
+  alias code='cd "$HOME/code"'
+fi
+
+# Open the current Linux folder in Windows Explorer.
+if command -v explorer.exe >/dev/null 2>&1; then
+  alias openhere='explorer.exe .'
+fi
+
+# Print the current directory as a Windows path.
+if command -v wslpath >/dev/null 2>&1; then
+  winpath() {
+    wslpath -w "$PWD"
+  }
+fi
+
+# Copy the current directory as a Windows path.
+if command -v wslpath >/dev/null 2>&1; then
+  if command -v clip.exe >/dev/null 2>&1; then
+    cwinpath() {
+      wslpath -w "$PWD" | tr -d '\n' | clip.exe
+      echo "Copied Windows path for the current directory."
+    }
+  fi
+fi

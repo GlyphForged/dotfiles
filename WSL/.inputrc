@@ -1,0 +1,17 @@
+# Make completion easier to use.
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+# Keep the terminal bell quiet.
+set bell-style none
+
+# Use the arrow keys to search command history by what is already typed.
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# Better word movement with Ctrl+Left and Ctrl+Right.
+"\e[1;5C": forward-word
+"\e[1;5D": backward-word
+"\e[5C": forward-word
+"\e[5D": backward-word

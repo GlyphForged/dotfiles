@@ -5,3 +5,5 @@
 *.out
 .DS_Store
 node_modules/
+.bashrc.local
+.gitconfig.local
