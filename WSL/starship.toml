@@ -9,14 +9,15 @@ $golang\
 $nodejs\
 $rust\
 $python\
+$time\
 $cmd_duration\
 $line_break\
 $character
 """
 
-palette = "mechanicus"
+palette = "cyberpunk"
 
-[palettes.mechanicus]
+[palettes.cyberpunk]
 ink = "#0B1020"
 night = "#131A33"
 panel = "#1E2747"
@@ -40,7 +41,7 @@ format = "[ $user ]($style)"
 [hostname]
 ssh_only = false
 style = "fg:ink bg:cyan bold"
-format = "[ node: $hostname ]($style)"
+format = "[ ノード $hostname ]($style)"
 
 [directory]
 style = "fg:pearl bg:panel bold"
@@ -77,12 +78,29 @@ symbol = "py "
 style = "fg:cyan bg:night"
 format = "[ $symbol$version ]($style)"
 
+[time]
+disabled = false
+time_format = "%H:%M"
+style = "fg:ink bg:cyan bold"
+# 時刻 = time
+format = "[ 時刻 $time ]($style)"
+
 [cmd_duration]
 min_time = 500
 style = "fg:ink bg:pink bold"
-format = "[ took $duration ]($style)"
+# 所要 = elapsed / took
+format = "[ 所要 $duration ]($style)"
 
 [character]
+# サムライ = samurai
 success_symbol = "[[サムライ](fg:magenta) >>](fg:cyan bold)"
-error_symbol = "[[void](fg:warning bold) >>](fg:pink bold)"
-vimcmd_symbol = "[[sync](fg:blue) <<](fg:cyan bold)"
+# エラー = error
+error_symbol = "[[エラー](fg:warning bold) >>](fg:pink bold)"
+# コマンド = command
+vimcmd_symbol = "[[コマンド](fg:blue) <<](fg:cyan bold)"
+# イチモジ = one character
+vimcmd_replace_one_symbol = "[[イチモジ](fg:warning bold) <>](fg:pink bold)"
+# リプレース = replace
+vimcmd_replace_symbol = "[[リプレース](fg:warning bold) <>](fg:pink bold)"
+# ビジュアル = visual
+vimcmd_visual_symbol = "[[ビジュアル](fg:magenta) <<](fg:cyan bold)"
