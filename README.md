@@ -19,7 +19,7 @@ Assumptions:
 
 Extra shit this does:
 
-- Installs `rsync`, `tmux`, and `neovim` if they are not already installed.
+- Installs the baseline tools this setup expects, including `neovim`, `tmux`, `starship`, and Ghostty on Omarchy.
 - Syncs the tracked home files and config directories into place.
 - Avoids failing shell startup when optional local env files are absent.
 
@@ -35,7 +35,7 @@ Both update scripts sync `Shared/nvim` first and then sync the environment-speci
 
 The Neovim setup is built on LazyVim and bootstraps itself on first launch. The shared core includes:
 
-- A Starship-inspired cyberpunk palette
+- A SilkCircuit-inspired cyberpunk palette, with the Vibrant variant driving the color choices
 - LazyVim extras for C/C++, Go, Python, Rust, TypeScript, and JSON
 - Manual support for Roslyn C#, Godot/GDScript, HTML/CSS, Emmet, and formatter/linter wiring
 
@@ -45,6 +45,26 @@ Useful first-run commands:
 nvim --headless "+Lazy! sync" +qa
 nvim --headless "+checkhealth" +qa
 ```
+
+## Theme Notes
+
+The current look is based on SilkCircuit, specifically the Vibrant flavor instead
+of the full-send Neon one.
+
+Quick version of the options:
+
+- `SilkCircuit Vibrant` is the default because it still looks loud without making my eyeballs want to commit seppuku.
+- `SilkCircuit Neon` rules if you want the colors absolutely screaming at you.
+- `Tokyo Night` is cleaner and more restrained, but it loses some of the cyberpunk vibes.
+- `Catppuccin Mocha` is good, just softer than the vibe I'm aiming for.
+
+For Neovim, I'm still using `nightfox.nvim` as the engine under the hood and
+overriding the palette to match the SilkCircuit direction instead of swapping
+the whole stack around.
+
+For terminals, Omarchy uses Ghostty as the default terminal. On Windows and
+WSL, this repo assumes you are using Windows Terminal and managing that setup
+yourself outside the repo.
 
 ## Godot Notes
 

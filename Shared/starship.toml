@@ -41,6 +41,7 @@ format = "[ $user ]($style)"
 [hostname]
 ssh_only = false
 style = "fg:ink bg:cyan bold"
+# ノード = "node" or "machine"
 format = "[ ノード $hostname ]($style)"
 
 [directory]
@@ -82,17 +83,25 @@ format = "[ $symbol$version ]($style)"
 disabled = false
 time_format = "%H:%M"
 style = "fg:ink bg:cyan bold"
+# 時刻 = "time" / current time
 format = "[ 時刻 $time ]($style)"
 
 [cmd_duration]
 min_time = 500
 style = "fg:ink bg:pink bold"
+# 所要 = "elapsed" / time taken
 format = "[ 所要 $duration ]($style)"
 
 [character]
+# サムライ = "samurai"
 success_symbol = "[[サムライ](fg:magenta) >>](fg:cyan bold)"
+# エラー = "error"
 error_symbol = "[[エラー](fg:warning bold) >>](fg:pink bold)"
+# コマンド = "command"
 vimcmd_symbol = "[[コマンド](fg:blue) <<](fg:cyan bold)"
+# イチモジ = "one character"
 vimcmd_replace_one_symbol = "[[イチモジ](fg:warning bold) <>](fg:pink bold)"
+# リプレース = "replace"
 vimcmd_replace_symbol = "[[リプレース](fg:warning bold) <>](fg:pink bold)"
+# ビジュアル = "visual"
 vimcmd_visual_symbol = "[[ビジュアル](fg:magenta) <<](fg:cyan bold)"

@@ -38,6 +38,7 @@ PACMAN_PACKAGES=(
   "starship"
   "tmux"
   "unzip"
+  "ghostty"
   "wget"
 )
 

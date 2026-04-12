@@ -7,19 +7,19 @@ local theme = {
     c = { fg = palette.pearl, bg = palette.night },
   },
   insert = {
-    a = { fg = palette.ink, bg = palette.magenta, gui = "bold" },
+    a = { fg = palette.ink, bg = palette.violet, gui = "bold" },
     b = { fg = palette.pearl, bg = palette.panel },
   },
   visual = {
-    a = { fg = palette.ink, bg = palette.blue, gui = "bold" },
+    a = { fg = palette.ink, bg = palette.magenta, gui = "bold" },
     b = { fg = palette.pearl, bg = palette.panel },
   },
   replace = {
-    a = { fg = palette.ink, bg = palette.warning, gui = "bold" },
+    a = { fg = palette.ink, bg = palette.red, gui = "bold" },
     b = { fg = palette.pearl, bg = palette.panel },
   },
   command = {
-    a = { fg = palette.ink, bg = palette.violet, gui = "bold" },
+    a = { fg = palette.ink, bg = palette.warning, gui = "bold" },
     b = { fg = palette.pearl, bg = palette.panel },
   },
   inactive = {
