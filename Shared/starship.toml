@@ -15,19 +15,19 @@ $line_break\
 $character
 """
 
-palette = "cyberpunk"
+palette = "cyberpunk-vibrant"
 
-[palettes.cyberpunk]
-ink = "#0B1020"
-night = "#131A33"
-panel = "#1E2747"
+[palettes.cyberpunk-vibrant]
+ink = "#060814"
+night = "#0B1020"
+panel = "#151D3B"
 violet = "#A855F7"
 magenta = "#FF4FD8"
 cyan = "#5EE7FF"
 blue = "#60A5FA"
 pink = "#FF9CEB"
 pearl = "#F4EEFF"
-warning = "#FF6B9A"
+warning = "#FFB86B"
 
 [fill]
 symbol = " "
@@ -93,15 +93,87 @@ style = "fg:ink bg:pink bold"
 format = "[ 所要 $duration ]($style)"
 
 [character]
-# サムライ = "samurai"
+# サ(sa) ム(mu)ラ(ra)イ(i)
 success_symbol = "[[サムライ](fg:magenta) >>](fg:cyan bold)"
-# エラー = "error"
+# エ(e)ラ(ra)ー(a)
 error_symbol = "[[エラー](fg:warning bold) >>](fg:pink bold)"
-# コマンド = "command"
+# コ(ko)マ(ma)ン(n)ド(do)
 vimcmd_symbol = "[[コマンド](fg:blue) <<](fg:cyan bold)"
-# イチモジ = "one character"
+# イ(i)チ(chi)モ(mo)ジ(ji) == "single character"
 vimcmd_replace_one_symbol = "[[イチモジ](fg:warning bold) <>](fg:pink bold)"
-# リプレース = "replace"
+# リ(ri)プ(pu)レ(re)ー(e)ス(su)
 vimcmd_replace_symbol = "[[リプレース](fg:warning bold) <>](fg:pink bold)"
-# ビジュアル = "visual"
+# ビ(bi)ジュ(ju)ア(a)ル(ru)
 vimcmd_visual_symbol = "[[ビジュアル](fg:magenta) <<](fg:cyan bold)"
+
+[palettes.cyberpunk-neon]
+ink = "#05030D"
+night = "#10071F"
+panel = "#221044"
+violet = "#B15CFF"
+magenta = "#FF35C8"
+cyan = "#3EFFFF"
+blue = "#4D8DFF"
+pink = "#FF8CEB"
+pearl = "#FFF4FE"
+warning = "#FFD166"
+
+[palettes.cyberpunk-subtle]
+ink = "#10081D"
+night = "#1B1035"
+panel = "#33205E"
+violet = "#C084FC"
+magenta = "#F472D0"
+cyan = "#67E8F9"
+blue = "#93C5FD"
+pink = "#FDA4AF"
+pearl = "#FDF4FF"
+warning = "#FDE68A"
+
+[palettes.mechanicus-subtle]
+ink = "#120D0A"
+night = "#211710"
+panel = "#39291D"
+violet = "#8F6A55"
+magenta = "#B87558"
+cyan = "#C99A69"
+blue = "#A87852"
+pink = "#D59A6A"
+pearl = "#F1DEC2"
+warning = "#D7B56D"
+
+[palettes.mechanicus-vibrant]
+ink = "#130806"
+night = "#2A110A"
+panel = "#4A2113"
+violet = "#B94832"
+magenta = "#E15A3D"
+cyan = "#F1A65A"
+blue = "#C96B35"
+pink = "#FF8B52"
+pearl = "#FFE1B8"
+warning = "#FFE06B"
+
+[palettes.mechanicus-neon]
+ink = "#0B0303"
+night = "#240806"
+panel = "#4A100A"
+violet = "#E72B1C"
+magenta = "#FF5638"
+cyan = "#FFB000"
+blue = "#F06A21"
+pink = "#FF8850"
+pearl = "#FFF0CC"
+warning = "#FFF35C"
+
+[palettes.orkz]
+ink = "#061006"
+night = "#0B1D0B"
+panel = "#183618"
+violet = "#78A83A"
+magenta = "#A8D34A"
+cyan = "#83FF4F"
+blue = "#4FC74E"
+pink = "#D7E86D"
+pearl = "#F1FFD0"
+warning = "#FFD84A"

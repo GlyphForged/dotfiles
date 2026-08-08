@@ -1,0 +1,52 @@
+# shellcheck shell=bash disable=SC1091
+# Shared interactive-shell settings. Environment-specific helpers are loaded
+# from ~/.config/glyphforged/shell/environment.sh; private junk stays local.
+alias p='python'
+alias r='rust'
+alias lg='lazygit'
+
+reload_shell() {
+  if [[ -n "${ZSH_VERSION:-}" ]]; then
+    exec zsh -l
+  elif [[ -n "${BASH_VERSION:-}" ]]; then
+    exec bash -l
+  else
+    exec "${SHELL:-/bin/sh}" -l
+  fi
+}
+alias src='reload_shell'
+[[ -d "$HOME/code" ]] && alias code='cd "$HOME/code"'
+
+starship_themes() {
+  local config_file="${STARSHIP_CONFIG:-$HOME/.config/starship.toml}"
+  [[ -f "$config_file" ]] || return 1
+  sed -n -E 's/^\[palettes\.([^]]+)\]$/\1/p' "$config_file"
+}
+
+theme() {
+  local theme_name="${1:-cyberpunk-vibrant}"
+  local config_file="${STARSHIP_CONFIG:-$HOME/.config/starship.toml}"
+  local state_file="${XDG_STATE_HOME:-$HOME/.local/state}/glyphforged/starship-theme"
+
+  if ! starship_themes | grep -Fxq "$theme_name"; then
+    echo "Unknown Starship theme: $theme_name"
+    echo "Available: $(starship_themes | tr '\n' ' ')"
+    return 2
+  fi
+
+  sed -i -E "s/^palette = \"[^\"]+\"/palette = \"$theme_name\"/" "$config_file"
+  mkdir -p "${state_file%/*}"
+  printf '%s\n' "$theme_name" > "$state_file"
+  echo "Starship theme set to $theme_name."
+}
+
+alias theme-subtle='theme cyberpunk-subtle'
+alias theme-vibrant='theme cyberpunk-vibrant'
+alias theme-neon='theme cyberpunk-neon'
+alias theme-mechanicus-subtle='theme mechanicus-subtle'
+alias theme-mechanicus-vibrant='theme mechanicus-vibrant'
+alias theme-mechanicus-neon='theme mechanicus-neon'
+alias theme-orkz='theme orkz'
+
+[[ -f "$HOME/.config/glyphforged/shell/environment.sh" ]] && source "$HOME/.config/glyphforged/shell/environment.sh"
+[[ -f "$HOME/.shellrc.local" ]] && source "$HOME/.shellrc.local"

@@ -1,0 +1,58 @@
+[user]
+  name = Aaron C
+  email = aaron@glyphforged.com
+
+[init]
+  defaultBranch = trunk
+
+[pull]
+  rebase = false
+
+[push]
+  default = simple
+
+[core]
+  editor = nvim
+  autocrlf = input
+  pager = less -FRX
+  whitespace = trailing-space,space-before-tab
+  excludesfile = ~/.gitignore_global
+
+[color]
+  ui = auto
+
+[diff]
+  colorMoved = default
+
+[diff "c"]
+  xfuncname = "^[A-Za-z_].*\\(" # Improve diff readability around C functions
+
+[merge]
+  conflictstyle = zdiff3
+
+[rerere]
+  enabled = true
+
+[alias]
+  st = status
+  co = checkout
+  sw = switch
+  br = branch
+  ci = commit
+  ds = diff --staged
+  df = diff
+  dff = diff --name-only
+  rb = rebase
+  rbi = rebase -i
+  blame = blame -w
+  amend = commit --amend --no-edit
+  lg = log --oneline --graph --decorate --all
+  last = log -1 HEAD
+  unstage = restore --staged
+  tree = log --graph --pretty=format:'%C(auto)%h%d %s %C(black)%C(bold)%cr' --abbrev-commit
+  squash = "!f() { git reset HEAD~$1 && git commit; }; f"
+  cleanup = "!git branch --merged | grep -v '\\*\\|main\\|master' | xargs -r git branch -d"
+  aliases = "!git config --get-regexp '^alias\\.' | sed 's/^alias\\.//' | column -t"
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/

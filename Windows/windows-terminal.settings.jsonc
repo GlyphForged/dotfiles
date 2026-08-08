@@ -1,0 +1,23 @@
+// Manual merge fallback for Windows Terminal settings.json files containing comments.
+// profiles.defaults applies the Nerd Font and CRT effect to PowerShell, WSL, and future profiles.
+// The list entries make the two PowerShell generations hard to confuse.
+{
+  "profiles": {
+    "defaults": {
+      "font": {
+        "face": "CaskaydiaCove NFM"
+      },
+      "experimental.retroTerminalEffect": true
+    },
+    "list": [
+      {
+        "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+        "name": "PowerShell 7"
+      },
+      {
+        "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+        "name": "Windows PowerShell 5.1 (legacy)"
+      }
+    ]
+  }
+}

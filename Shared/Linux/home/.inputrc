@@ -6,7 +6,7 @@ set show-all-if-unmodified on
 # Keep the terminal bell quiet.
 set bell-style none
 
-# Use the arrow keys to search command history by what is already typed.
+# Search command history by what is already typed.
 "\e[A": history-search-backward
 "\e[B": history-search-forward
 
