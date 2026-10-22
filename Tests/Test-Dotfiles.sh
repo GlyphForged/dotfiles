@@ -18,8 +18,7 @@ bash -n \
   "$REPO_ROOT/Shared/Linux/bootstrap.sh" \
   "$REPO_ROOT/Shared/Linux/home/.bash_profile" \
   "$REPO_ROOT/Shared/Linux/home/.bashrc" \
-  "$REPO_ROOT/Shared/Linux/home/.shellrc" \
-  "$REPO_ROOT/Legacy/Omarchy/updateDotfiles.sh"
+  "$REPO_ROOT/Shared/Linux/home/.shellrc"
 zsh -n "$REPO_ROOT/Shared/Linux/home/.zshrc"
 
 if command -v shellcheck >/dev/null 2>&1; then
@@ -29,8 +28,7 @@ if command -v shellcheck >/dev/null 2>&1; then
     "$REPO_ROOT/Shared/Linux/bootstrap.sh" \
     "$REPO_ROOT/Shared/Linux/home/.bash_profile" \
     "$REPO_ROOT/Shared/Linux/home/.bashrc" \
-    "$REPO_ROOT/Shared/Linux/home/.shellrc" \
-    "$REPO_ROOT/Legacy/Omarchy/updateDotfiles.sh"
+    "$REPO_ROOT/Shared/Linux/home/.shellrc"
 else
   echo "SKIP: shellcheck is not installed yet; the bootstrap will install it."
 fi

@@ -80,8 +80,6 @@ offline unless `--network` is passed.
   helpers, and the Godot bridge.
 - `Windows/` contains the PowerShell, Windows Terminal, font, and Starship
   setup.
-- `Legacy/Omarchy/` contains the old Omarchy desktop setup. It is not part of
-  the normal bootstrap anymore, but I am keeping it around for now.
 
 The shared Linux layer is meant to be boring. Arch and WSL should only contain
 what is actually different between them. Windows executables do not belong in
