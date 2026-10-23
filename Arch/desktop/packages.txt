@@ -1,0 +1,51 @@
+# Desktop
+hyprland
+waybar
+kitty
+chromium
+dolphin
+fuzzel
+
+# Hyprland integration
+hyprpaper
+hyprlock
+hyprpolkitagent
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xorg-xwayland
+gvfs
+
+# Notifications
+mako
+libnotify
+
+# Screenshots and clipboard
+grim
+slurp
+wl-clipboard
+jq
+
+# Connectivity
+networkmanager
+bluez
+bluez-utils
+bluetui
+
+# Audio and media
+pipewire
+pipewire-alsa
+pipewire-pulse
+wireplumber
+alsa-utils
+playerctl
+
+# Laptop controls
+brightnessctl
+power-profiles-daemon
+
+# Appearance
+breeze
+ttf-cascadia-code-nerd
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
